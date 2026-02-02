@@ -1,0 +1,14 @@
+# PHP upload limits for video/thumbnail uploads (Apache with mod_php)
+# If you use PHP-FPM, .user.ini in api/videos/ sets the same; restart PHP-FPM after changing.
+<IfModule mod_php.c>
+    php_value upload_max_filesize 512M
+    php_value post_max_size 520M
+</IfModule>
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 512M
+    php_value post_max_size 520M
+</IfModule>
+<IfModule mod_php8.c>
+    php_value upload_max_filesize 512M
+    php_value post_max_size 520M
+</IfModule>
