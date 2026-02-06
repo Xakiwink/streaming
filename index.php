@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Educational Video Streaming</title>
+    <title>Login - EduStream</title>
     <link rel="stylesheet" href="/streaming/frontend/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container" style="max-width: 400px; margin-top: 100px;">
-        <div class="card">
-            <div class="card-header">
-                <h1 class="card-title text-center">Login</h1>
+<body class="auth-page">
+    <!-- Logo -->
+    <div class="auth-logo">
+        <img src="/streaming/frontend/img/logo.png" alt="EduStream">
+    </div>
+    <div class="auth-app-name">EduStream</div>
+
+    <!-- Login Card -->
+    <div class="auth-card">
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to continue</p>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required>
+                <div class="form-error"></div>
             </div>
             
-            <form id="loginForm">
-                <div class="form-group">
-                    <label class="form-label" for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-input" required>
-                    <div class="form-error"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-input" required>
-                    <div class="form-error"></div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-            </form>
-            
-            <div class="text-center mt-2">
-                <p>Don't have an account? <a href="/streaming/frontend/pages/register.php" class="nav-link">Register</a></p>
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                <div class="form-error"></div>
             </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+        
+        <div class="auth-footer">
+            Don't have an account? <a href="/streaming/frontend/pages/register.php">Sign Up</a>
         </div>
     </div>
 
@@ -58,17 +65,16 @@
             
             const submitBtn = e.target.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Logging in...';
+            submitBtn.textContent = 'Signing in...';
             
             const result = await handleLogin(username, password);
             
             if (!result.success) {
                 showAlert(result.message || 'Login failed', 'error');
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Login';
+                submitBtn.textContent = 'Sign In';
             }
         });
     </script>
 </body>
 </html>
-

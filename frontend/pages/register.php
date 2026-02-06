@@ -3,50 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Educational Video Streaming</title>
+    <title>Register - EduStream</title>
     <link rel="stylesheet" href="/streaming/frontend/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container" style="max-width: 400px; margin-top: 50px;">
-        <div class="card">
-            <div class="card-header">
-                <h1 class="card-title text-center">Register</h1>
+<body class="auth-page">
+    <!-- Logo -->
+    <div class="auth-logo">
+        <img src="/streaming/frontend/img/logo.png" alt="EduStream">
+    </div>
+    <div class="auth-app-name">EduStream</div>
+
+    <!-- Register Card -->
+    <div class="auth-card">
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Join us to get started</p>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Choose a username" required>
+                <div class="form-error"></div>
             </div>
             
-            <form id="registerForm">
-                <div class="form-group">
-                    <label class="form-label" for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-input" required>
-                    <div class="form-error"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
-                    <div class="form-error"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-input" required>
-                    <div class="form-error"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="role">Role</label>
-                    <select id="role" name="role" class="form-select" required>
-                        <option value="student">Student</option>
-                        <option value="instructor">Instructor</option>
-                    </select>
-                    <div class="form-error"></div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
-            </form>
-            
-            <div class="text-center mt-2">
-                <p>Already have an account? <a href="/streaming/index.php" class="nav-link">Login</a></p>
+            <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                <div class="form-error"></div>
             </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Create a password" required>
+                <div class="form-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="role">Account Type</label>
+                <select id="role" name="role" class="form-select" required>
+                    <option value="student">Student</option>
+                    <option value="instructor">Instructor</option>
+                </select>
+                <div class="form-error"></div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        </form>
+        
+        <div class="auth-footer">
+            Already have an account? <a href="/streaming/index.php">Sign In</a>
         </div>
     </div>
 
@@ -75,17 +82,16 @@
             
             const submitBtn = e.target.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Registering...';
+            submitBtn.textContent = 'Creating account...';
             
             const result = await handleRegister(username, email, password, role);
             
             if (!result.success) {
                 showAlert(result.message || 'Registration failed', 'error');
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Register';
+                submitBtn.textContent = 'Create Account';
             }
         });
     </script>
 </body>
 </html>
-

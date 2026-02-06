@@ -67,9 +67,21 @@ try {
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mime_type = finfo_file($finfo, $file['tmp_name']);
     finfo_close($finfo);
-    if (!in_array($mime_type, ALLOWED_VIDEO_TYPES)) {
+    
+    // Check if it's a video type (be lenient - accept any video/* MIME type)
+    $is_allowed = in_array($mime_type, ALLOWED_VIDEO_TYPES) || strpos($mime_type, 'video/') === 0;
+    
+    // Also check by file extension as fallback
+    if (!$is_allowed) {
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $video_extensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv', '3gp', '3gpp', 'flv', 'mpeg', 'mpg', 'm4v'];
+        $is_allowed = in_array($ext, $video_extensions);
+    }
+    
+    if (!$is_allowed) {
+        log_error('Invalid video file type', ['mime' => $mime_type, 'name' => $file['name']]);
         ob_clean();
-        send_error_response('Invalid file type. Allowed: MP4, WebM, OGG', HTTP_BAD_REQUEST);
+        send_error_response('Invalid file type (' . $mime_type . '). Please upload a video file (MP4, WebM, MOV, AVI, etc.)', HTTP_BAD_REQUEST);
     }
 
     $upload_dir = __DIR__ . '/../../uploads/videos/';

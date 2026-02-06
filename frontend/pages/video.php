@@ -9,24 +9,31 @@ $video_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video - Educational Video Streaming</title>
+    <title>Video - EduStream</title>
     <link rel="stylesheet" href="/streaming/frontend/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="/streaming/frontend/pages/dashboard.php" class="logo">EduStream</a>
+                <div>
+                    <a href="/streaming/frontend/pages/dashboard.php" class="logo">EduStream</a>
+                    <div style="color: var(--text-on-dark); opacity: 0.9; font-size: 0.875rem; margin-top: 4px;">
+                        Welcome, <?php echo htmlspecialchars($current_user['username']); ?>
+                    </div>
+                </div>
                 <nav class="nav">
-                    <span>Welcome, <?php echo htmlspecialchars($current_user['username']); ?></span>
-                    <a href="/streaming/frontend/pages/dashboard.php" class="nav-link">Dashboard</a>
+                    <a href="/streaming/frontend/pages/dashboard.php" class="btn btn-secondary btn-sm">Dashboard</a>
                     <button onclick="handleLogout()" class="btn btn-secondary btn-sm">Logout</button>
                 </nav>
             </div>
         </div>
     </header>
 
-    <div class="container" style="margin-top: 2rem;">
+    <div class="container" style="margin-top: 1.5rem; padding-bottom: 2rem;">
         <div id="videoContainer">
             <p>Loading video...</p>
         </div>

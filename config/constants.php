@@ -48,7 +48,20 @@ define('SESSION_LIFETIME', 3600); // 1 hour
 // File upload (allowed MIME types; no app-level size limits)
 // ---------------------------------------------------------------------------
 
-define('ALLOWED_VIDEO_TYPES', ['video/mp4', 'video/webm', 'video/ogg']);
+define('ALLOWED_VIDEO_TYPES', [
+    'video/mp4',
+    'video/webm',
+    'video/ogg',
+    'video/3gpp',
+    'video/3gpp2',
+    'video/quicktime',
+    'video/x-msvideo',
+    'video/x-matroska',
+    'video/x-flv',
+    'video/mpeg',
+    'video/x-m4v',
+    'application/octet-stream'  // Fallback for unknown video types
+]);
 define('ALLOWED_IMAGE_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']);
 
 // ---------------------------------------------------------------------------
